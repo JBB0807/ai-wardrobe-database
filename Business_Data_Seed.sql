@@ -1,45 +1,59 @@
+--Run only once, rerun Business Table Build if a fresh data set is needed
+
 --
--- Seed UseTypes
+-- User Types
 --
---DELETE FROM "UserTypes";
 INSERT INTO "UserTypes" (userType) VALUES ('Customer');
 INSERT INTO "UserTypes" (userType) VALUES ('Admin');
 --
--- END - Seed UseTypes
+-- END - User Types
 --
 
-
 --
--- Seed Size
+-- Size
 --
---DELETE FROM "Size";
 INSERT INTO "Size" (sizeDescription) VALUES ('x-small');
 INSERT INTO "Size" (sizeDescription) VALUES ('small');
 INSERT INTO "Size" (sizeDescription) VALUES ('medium');
 INSERT INTO "Size" (sizeDescription) VALUES ('large');
 INSERT INTO "Size" (sizeDescription) VALUES ('x-large');
 --
--- END - Seed Size
+-- END - Size
 --
-
 
 --
 -- Item Types
 --
---DELETE FROM "ItemTypes";
 INSERT INTO "ItemTypes" (itemTypeDescription) VALUES ('Coat');
 --
 -- END - Item Types
 --
 
-
 --
 -- Item Gender
 --
---DELETE FROM "ItemGender";
 INSERT INTO "ItemGender" (itemGenderDescription) VALUES ('Female');
 INSERT INTO "ItemGender" (itemGenderDescription) VALUES ('Male');
 INSERT INTO "ItemGender" (itemGenderDescription) VALUES ('Unisex');
 --
 -- END - Item Gender
+--
+
+--
+
+--
+-- Items
+--
+INSERT INTO "Item" (itemtype ,itemdescription ,itemprice ,imageurl ,fkitemgenderid ,fksizeid ,fktypeid) 
+    VALUES ('coat', 'First item description', 10.99, 'url1', 1, 1, 1);
+INSERT INTO "Item" (itemtype ,itemdescription ,itemprice ,imageurl ,fkitemgenderid ,fksizeid ,fktypeid) 
+    VALUES ('coat', 'Second item description', 20.99, 'url2', 2, 2, 1);
+INSERT INTO "Item" (itemtype ,itemdescription ,itemprice ,imageurl ,fkitemgenderid ,fksizeid ,fktypeid) 
+    VALUES ('coat', 'Third item description', 30.99, 'url3', 3, 3, 1);
+INSERT INTO "Item" (itemtype ,itemdescription ,itemprice ,imageurl ,fkitemgenderid ,fksizeid ,fktypeid) 
+    VALUES ('coat', 'Fourht item description', 40.99, 'url4', 1, 4, 1);
+INSERT INTO "Item" (itemtype ,itemdescription ,itemprice ,imageurl ,fkitemgenderid ,fksizeid ,fktypeid) 
+    VALUES ('coat', 'Fifth item description', 50.99, 'url5', 2, 5, 1);
+--
+-- END - Items
 --
