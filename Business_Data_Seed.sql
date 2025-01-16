@@ -1,13 +1,6 @@
 --Run only once, rerun Business Table Build if a fresh data set is needed
 
---
--- User Types
---
-INSERT INTO "UserTypes" (userType) VALUES ('Customer');
-INSERT INTO "UserTypes" (userType) VALUES ('Admin');
---
--- END - User Types
---
+--Data Seed Version 1.1
 
 --
 -- Size
