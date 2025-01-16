@@ -1,3 +1,5 @@
+--Table Build Version 1.1
+
 DROP TABLE IF EXISTS "OrderDetails";
 DROP TABLE IF EXISTS "Transaction";
 DROP TABLE IF EXISTS "Order";
@@ -5,7 +7,6 @@ DROP TABLE IF EXISTS "Order";
 
 DROP TABLE IF EXISTS "Address";
 DROP TABLE IF EXISTS "User";
-DROP TABLE IF EXISTS "UserTypes";
 
 
 DROP TABLE IF EXISTS "Item";
@@ -17,20 +18,14 @@ DROP TABLE IF EXISTS "ItemTypes";
 --
 --Creating user related tables
 --
-CREATE TABLE "UserTypes" (
-    userTypeID SERIAL PRIMARY KEY,
-    userType VARCHAR(255)
-);
 
-
-CREATE TABLE "User" (
+CREATE TABLE "RegisteredUser" (
     userID SERIAL PRIMARY KEY,
     firstName VARCHAR(255),
     lastName VARCHAR(255),
     phone INTEGER,
     email VARCHAR(255),
     fkUserTypeID INTEGER,
-    CONSTRAINT user_user_type_fk FOREIGN KEY (fkUserTypeID) REFERENCES "UserTypes" (userTypeID)
 );
 
 
@@ -44,7 +39,7 @@ CREATE TABLE "Address" (
     postalCode VARCHAR(255),
     country VARCHAR(255),
     fkUserID INTEGER,
-    CONSTRAINT address_user_id_fk FOREIGN KEY (fkUserID) REFERENCES "User" (userID)
+    CONSTRAINT address_user_id_fk FOREIGN KEY (fkUserID) REFERENCES "RegisteredUser" (userID)
 );
 
 
@@ -106,7 +101,7 @@ CREATE TABLE "Order" (
     orderDate DATE,
     orderStatus VARCHAR(255),
     fkUserID INTEGER,
-    CONSTRAINT order_user_id_fk FOREIGN KEY (fkUserID) REFERENCES "User" (userID)
+    CONSTRAINT order_user_id_fk FOREIGN KEY (fkUserID) REFERENCES "RegisteredUser" (userID)
 );
 
 
