@@ -2,6 +2,26 @@
 
 --Data Seed Version 1.2
 
+
+--
+-- Order Status
+--
+INSERT INTO "OrderStatus" ("status")
+VALUES 
+    ('Pending'), 
+    ('Confirmed'), 
+    ('Shipped'), 
+    ('Out for Delivery'), 
+    ('Delivered'), 
+    ('Canceled'), 
+    ('Failed'), 
+    ('Returned'), 
+    ('Refunded');
+--
+-- END - Order Status
+--
+
+
 --
 -- Size
 --
