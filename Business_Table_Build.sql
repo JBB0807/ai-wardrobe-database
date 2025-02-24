@@ -1,4 +1,4 @@
---Table Build Version 1.1
+--Table Build Version 1.2
 
 DROP TABLE IF EXISTS "OrderDetails";
 DROP TABLE IF EXISTS "Transaction";
@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS "Order";
 
 
 DROP TABLE IF EXISTS "Address";
-DROP TABLE IF EXISTS "User";
+DROP TABLE IF EXISTS "RegisteredUser";
 
 
 DROP TABLE IF EXISTS "Item";
@@ -18,14 +18,12 @@ DROP TABLE IF EXISTS "ItemTypes";
 --
 --Creating user related tables
 --
-
 CREATE TABLE "RegisteredUser" (
     userID SERIAL PRIMARY KEY,
     firstName VARCHAR(255),
     lastName VARCHAR(255),
     phone INTEGER,
-    email VARCHAR(255),
-    fkUserTypeID INTEGER,
+    email VARCHAR(255)
 );
 
 
@@ -41,13 +39,9 @@ CREATE TABLE "Address" (
     fkUserID INTEGER,
     CONSTRAINT address_user_id_fk FOREIGN KEY (fkUserID) REFERENCES "RegisteredUser" (userID)
 );
-
-
 --
 -- END - user related tables
 --
-
-
 
 
 --
@@ -74,7 +68,8 @@ CREATE TABLE "ItemGender" (
 CREATE TABLE "Item" (
     itemID SERIAL PRIMARY KEY,
     itemType VARCHAR(255),
-    itemDescription VARCHAR(255),
+    itemName VARCHAR(100),
+    itemDescription VARCHAR(1000),
     itemPrice DECIMAL,
     imageURL VARCHAR(255),
     fkItemGenderID INTEGER,
@@ -89,7 +84,6 @@ CREATE TABLE "Item" (
 --
 -- END - item related tables
 --
-
 
 
 
@@ -127,3 +121,5 @@ CREATE TABLE "OrderDetails" (
 --
 -- END - order related table
 --
+
+commit;

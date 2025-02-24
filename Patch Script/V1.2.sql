@@ -1,0 +1,11 @@
+ALTER TABLE "Item"
+ADD COLUMN IF NOT EXISTS "itemname" VARCHAR(100);
+
+ALTER TABLE "Item" 
+ALTER COLUMN "itemdescription" TYPE VARCHAR(1000);
+
+CREATE TABLE IF NOT EXISTS "DbVersion" (
+    versionNum DECIMAL 
+);
+
+INSERT INTO "DbVersion" VALUES (1.2);
