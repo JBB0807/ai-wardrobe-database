@@ -3,6 +3,7 @@
 DROP TABLE IF EXISTS "OrderDetails";
 DROP TABLE IF EXISTS "Transaction";
 DROP TABLE IF EXISTS "Order";
+DROP TABLE IF EXISTS "OrderStatus";
 
 
 DROP TABLE IF EXISTS "Address";
@@ -29,9 +30,8 @@ CREATE TABLE "RegisteredUser" (
 
 CREATE TABLE "Address" (
     addressID SERIAL PRIMARY KEY,
-    streetNum INTEGER,
-    streetName VARCHAR(255),
-    apartmentNum INTEGER,
+    address1 VARCHAR(255),
+    address2  VARCHAR(255),
     city VARCHAR(255),
     province VARCHAR(255),
     postalCode VARCHAR(255),
@@ -85,17 +85,20 @@ CREATE TABLE "Item" (
 -- END - item related tables
 --
 
-
-
 --
 -- Creating order related table
 --
+CREATE TABLE "OrderStatus" (
+    "status" VARCHAR(50) PRIMARY KEY
+);
+
 CREATE TABLE "Order" (
     orderID SERIAL PRIMARY KEY,
     orderDate DATE,
-    orderStatus VARCHAR(255),
+    orderStatus VARCHAR(255) DEFAULT 'Pending' ,
     fkUserID INTEGER,
-    CONSTRAINT order_user_id_fk FOREIGN KEY (fkUserID) REFERENCES "RegisteredUser" (userID)
+    CONSTRAINT order_user_id_fk FOREIGN KEY (fkUserID) REFERENCES "RegisteredUser" (userID),
+    CONSTRAINT orders_status_fk FOREIGN KEY (orderstatus) REFERENCES "OrderStatus"("status")
 );
 
 
@@ -104,6 +107,11 @@ CREATE TABLE "Transaction" (
     totalAmount DECIMAL,
     transactionDate DATE,
     transactionStatus VARCHAR(255),
+    paypaltransactionid VARCHAR(100),
+    payername VARCHAR(100),
+    payeremail VARCHAR(100),
+    currency VARCHAR(20),
+    paymentmethod VARCHAR(20),
     fkorderID INTEGER,
     CONSTRAINT transaction_order_id_fk FOREIGN KEY (fkorderID) REFERENCES "Order" (orderID)
 );
@@ -112,7 +120,7 @@ CREATE TABLE "Transaction" (
 CREATE TABLE "OrderDetails" (
     orderDetailsID SERIAL PRIMARY KEY,
     fkItemID INTEGER,
-    quantity DATE,
+    quantity INTEGER,
     price DECIMAL,
     fkorderID INTEGER,
     CONSTRAINT order_details_item_id_fk FOREIGN KEY (fkItemID) REFERENCES "Item" (itemID),
