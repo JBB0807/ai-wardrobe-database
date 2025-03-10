@@ -30,9 +30,8 @@ CREATE TABLE "RegisteredUser" (
 
 CREATE TABLE "Address" (
     addressID SERIAL PRIMARY KEY,
-    streetNum INTEGER,
-    streetName VARCHAR(255),
-    apartmentNum INTEGER,
+    address1 VARCHAR(255),
+    address2  VARCHAR(255),
     city VARCHAR(255),
     province VARCHAR(255),
     postalCode VARCHAR(255),
@@ -86,8 +85,6 @@ CREATE TABLE "Item" (
 -- END - item related tables
 --
 
-
-
 --
 -- Creating order related table
 --
@@ -123,7 +120,7 @@ CREATE TABLE "Transaction" (
 CREATE TABLE "OrderDetails" (
     orderDetailsID SERIAL PRIMARY KEY,
     fkItemID INTEGER,
-    quantity DATE,
+    quantity INTEGER,
     price DECIMAL,
     fkorderID INTEGER,
     CONSTRAINT order_details_item_id_fk FOREIGN KEY (fkItemID) REFERENCES "Item" (itemID),
